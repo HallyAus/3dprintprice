@@ -1,0 +1,494 @@
+/* PrintForge Widget Styles */
+.pf-widget {
+  --pf-primary: #2563eb;
+  --pf-primary-hover: #1d4ed8;
+  --pf-success: #16a34a;
+  --pf-error: #dc2626;
+  --pf-text: #1a1a1a;
+  --pf-text-secondary: #666;
+  --pf-bg: #ffffff;
+  --pf-bg-secondary: #f9fafb;
+  --pf-border: #e5e7eb;
+  --pf-radius: 8px;
+  --pf-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--pf-text);
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.pf-widget *, .pf-widget *::before, .pf-widget *::after {
+  box-sizing: inherit;
+}
+
+.pf-container {
+  background: var(--pf-bg);
+  border: 1px solid var(--pf-border);
+  border-radius: var(--pf-radius);
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: var(--pf-shadow);
+}
+
+.pf-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.pf-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--pf-text);
+}
+
+.pf-subtitle {
+  font-size: 14px;
+  color: var(--pf-text-secondary);
+  margin: 0;
+}
+
+/* Steps */
+.pf-steps {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.pf-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--pf-text-secondary);
+}
+
+.pf-step-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--pf-bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+  border: 2px solid var(--pf-border);
+}
+
+.pf-step.active .pf-step-number {
+  background: var(--pf-primary);
+  color: white;
+  border-color: var(--pf-primary);
+}
+
+.pf-step.completed .pf-step-number {
+  background: var(--pf-success);
+  color: white;
+  border-color: var(--pf-success);
+}
+
+.pf-step-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--pf-border);
+}
+
+/* Upload area */
+.pf-upload-area {
+  border: 2px dashed var(--pf-border);
+  border-radius: var(--pf-radius);
+  padding: 48px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--pf-bg-secondary);
+}
+
+.pf-upload-area:hover,
+.pf-upload-area.dragover {
+  border-color: var(--pf-primary);
+  background: #eff6ff;
+}
+
+.pf-upload-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  color: var(--pf-text-secondary);
+}
+
+.pf-upload-text {
+  font-size: 16px;
+  color: var(--pf-text);
+  margin: 0 0 8px 0;
+}
+
+.pf-upload-hint {
+  font-size: 13px;
+  color: var(--pf-text-secondary);
+  margin: 0;
+}
+
+.pf-upload-input {
+  display: none;
+}
+
+/* 3D Viewer */
+.pf-viewer-container {
+  margin-bottom: 24px;
+}
+
+.pf-viewer {
+  width: 100%;
+  height: 300px;
+  border: 1px solid var(--pf-border);
+  border-radius: var(--pf-radius);
+  background: #1a1a1a;
+  overflow: hidden;
+}
+
+.pf-viewer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pf-file-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--pf-bg-secondary);
+  border-radius: var(--pf-radius);
+}
+
+.pf-file-name {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pf-file-size {
+  font-size: 13px;
+  color: var(--pf-text-secondary);
+}
+
+.pf-dimensions {
+  font-size: 13px;
+  color: var(--pf-text-secondary);
+  text-align: right;
+}
+
+.pf-remove-btn {
+  background: none;
+  border: none;
+  color: var(--pf-error);
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.pf-remove-btn:hover {
+  background: #fee2e2;
+}
+
+/* Form */
+.pf-form {
+  display: grid;
+  gap: 20px;
+}
+
+.pf-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .pf-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pf-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pf-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--pf-text);
+}
+
+.pf-input,
+.pf-select,
+.pf-textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--pf-border);
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--pf-text);
+  background: var(--pf-bg);
+  transition: border-color 0.2s ease;
+}
+
+.pf-input:focus,
+.pf-select:focus,
+.pf-textarea:focus {
+  outline: none;
+  border-color: var(--pf-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.pf-input.error,
+.pf-select.error,
+.pf-textarea.error {
+  border-color: var(--pf-error);
+}
+
+.pf-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.pf-hint {
+  font-size: 12px;
+  color: var(--pf-text-secondary);
+}
+
+.pf-error-text {
+  font-size: 12px;
+  color: var(--pf-error);
+}
+
+/* Estimate display */
+.pf-estimate {
+  background: var(--pf-bg-secondary);
+  border: 1px solid var(--pf-border);
+  border-radius: var(--pf-radius);
+  padding: 20px;
+  margin: 24px 0;
+}
+
+.pf-estimate-header {
+  font-size: 14px;
+  color: var(--pf-text-secondary);
+  margin-bottom: 8px;
+}
+
+.pf-estimate-price {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--pf-primary);
+}
+
+.pf-estimate-currency {
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--pf-text-secondary);
+}
+
+.pf-estimate-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--pf-border);
+}
+
+.pf-estimate-item {
+  text-align: center;
+}
+
+.pf-estimate-item-label {
+  font-size: 12px;
+  color: var(--pf-text-secondary);
+  margin-bottom: 4px;
+}
+
+.pf-estimate-item-value {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Buttons */
+.pf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pf-btn-primary {
+  background: var(--pf-primary);
+  color: white;
+}
+
+.pf-btn-primary:hover:not(:disabled) {
+  background: var(--pf-primary-hover);
+}
+
+.pf-btn-secondary {
+  background: var(--pf-bg);
+  color: var(--pf-text);
+  border: 1px solid var(--pf-border);
+}
+
+.pf-btn-secondary:hover:not(:disabled) {
+  background: var(--pf-bg-secondary);
+}
+
+.pf-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pf-btn-full {
+  width: 100%;
+}
+
+.pf-btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Progress */
+.pf-progress-container {
+  margin-top: 16px;
+}
+
+.pf-progress {
+  height: 4px;
+  background: var(--pf-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.pf-progress-bar {
+  height: 100%;
+  background: var(--pf-primary);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.pf-progress-text {
+  font-size: 13px;
+  color: var(--pf-text-secondary);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Success state */
+.pf-success-container {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.pf-success-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  color: var(--pf-success);
+}
+
+.pf-success-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.pf-success-message {
+  font-size: 16px;
+  color: var(--pf-text-secondary);
+  margin: 0 0 24px 0;
+}
+
+.pf-submission-id {
+  font-size: 14px;
+  color: var(--pf-text-secondary);
+  background: var(--pf-bg-secondary);
+  padding: 8px 16px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 16px;
+}
+
+/* Loading */
+.pf-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.pf-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--pf-border);
+  border-top-color: var(--pf-primary);
+  border-radius: 50%;
+  animation: pf-spin 1s linear infinite;
+}
+
+@keyframes pf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pf-loading-text {
+  margin-top: 16px;
+  color: var(--pf-text-secondary);
+}
+
+/* Error */
+.pf-error-container {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--pf-radius);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.pf-error-title {
+  font-weight: 600;
+  color: var(--pf-error);
+  margin: 0 0 4px 0;
+}
+
+.pf-error-message {
+  font-size: 14px;
+  color: #991b1b;
+  margin: 0;
+}
+
+/* Disclaimer */
+.pf-disclaimer {
+  font-size: 12px;
+  color: var(--pf-text-secondary);
+  text-align: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--pf-border);
+}
