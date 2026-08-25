@@ -4,6 +4,7 @@ import helmet from '@fastify/helmet';
 import jwt from '@fastify/jwt';
 import rateLimit from '@fastify/rate-limit';
 import multipart from '@fastify/multipart';
+import type { FastifyError } from 'fastify';
 
 import { env, isDev } from './config/env.js';
 import { healthCheck, closePool } from './db/index.js';
@@ -62,20 +63,21 @@ await fastify.register(publicRoutes);
 await fastify.register(adminRoutes);
 
 // Global error handler
-fastify.setErrorHandler((error, request, reply) => {
+fastify.setErrorHandler((error, _request, reply) => {
   fastify.log.error(error);
+  const fastifyError = error as FastifyError;
 
   // Zod validation errors
-  if (error.validation) {
+  if (fastifyError.validation) {
     return reply.status(400).send({
       code: 'VALIDATION_ERROR',
       message: 'Validation failed',
-      details: error.validation,
+      details: fastifyError.validation,
     });
   }
 
   // Rate limit errors
-  if (error.statusCode === 429) {
+  if (fastifyError.statusCode === 429) {
     return reply.status(429).send({
       code: 'RATE_LIMITED',
       message: 'Too many requests, please try again later',
@@ -83,9 +85,9 @@ fastify.setErrorHandler((error, request, reply) => {
   }
 
   // JWT errors
-  if (error.code === 'FST_JWT_NO_AUTHORIZATION_IN_HEADER' ||
-    error.code === 'FST_JWT_AUTHORIZATION_TOKEN_EXPIRED' ||
-    error.code === 'FST_JWT_AUTHORIZATION_TOKEN_INVALID') {
+  if (fastifyError.code === 'FST_JWT_NO_AUTHORIZATION_IN_HEADER' ||
+    fastifyError.code === 'FST_JWT_AUTHORIZATION_TOKEN_EXPIRED' ||
+    fastifyError.code === 'FST_JWT_AUTHORIZATION_TOKEN_INVALID') {
     return reply.status(401).send({
       code: 'UNAUTHORIZED',
       message: 'Invalid or expired authentication token',
@@ -93,9 +95,9 @@ fastify.setErrorHandler((error, request, reply) => {
   }
 
   // Default error response
-  return reply.status(error.statusCode || 500).send({
+  return reply.status(fastifyError.statusCode || 500).send({
     code: 'INTERNAL_ERROR',
-    message: isDev ? error.message : 'An internal error occurred',
+    message: isDev ? fastifyError.message : 'An internal error occurred',
   });
 });
 

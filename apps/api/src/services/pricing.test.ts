@@ -64,14 +64,6 @@ describe('Pricing Engine', () => {
     });
 
     it('should apply quantity discount for bulk orders', () => {
-      const singleResult = calculatePrice({
-        slicingResult: mockSlicingResult,
-        material: 'PLA',
-        quality: 'Standard',
-        quantity: 1,
-        pricingConfig: testConfig,
-      });
-
       const bulkResult = calculatePrice({
         slicingResult: mockSlicingResult,
         material: 'PLA',

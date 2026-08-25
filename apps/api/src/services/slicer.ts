@@ -1,6 +1,6 @@
 import { spawn } from 'child_process';
-import { writeFile, unlink, readFile, mkdir } from 'fs/promises';
-import { join, dirname } from 'path';
+import { writeFile, unlink, mkdir } from 'fs/promises';
+import { join } from 'path';
 import { tmpdir } from 'os';
 import { createHash } from 'crypto';
 import { nanoid } from 'nanoid';
@@ -14,11 +14,6 @@ const QUALITY_PROFILES: Record<QualityProfile, { layerHeight: number; infillPerc
   Draft: { layerHeight: 0.28 },
   Standard: { layerHeight: 0.20 },
   Fine: { layerHeight: 0.12 },
-};
-
-const PRINTER_PROFILES: Record<string, { profileName: string; configPath?: string }> = {
-  'generic-fdm': { profileName: 'Generic FDM' },
-  'bambu-p1s': { profileName: 'Bambu P1S' },
 };
 
 /**

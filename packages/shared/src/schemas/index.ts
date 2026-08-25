@@ -193,7 +193,7 @@ export const FileValidation = {
 
 // Type exports from schemas
 export type UploadInitRequest = z.infer<typeof UploadInitRequestSchema>;
-export type QuoteRequest = z.infer<typeof QuoteRequestSchema>;
+export type ValidatedQuoteRequest = z.infer<typeof QuoteRequestSchema>;
 export type MaterialPricingInput = z.infer<typeof MaterialPricingSchema>;
 export type PricingConfigInput = z.infer<typeof PricingConfigSchema>;
 export type AdminLoginRequest = z.infer<typeof AdminLoginRequestSchema>;

@@ -26,8 +26,11 @@ export default function LoginPage() {
         await api.login(email, undefined, true);
         setSuccess('Check your email for a sign-in link!');
       } else {
-        const { token } = await api.login(email, password, false);
-        login(token);
+        const result = await api.login(email, password, false);
+        if (!('token' in result)) {
+          throw new Error(result.message);
+        }
+        login(result.token);
         router.push('/dashboard');
       }
     } catch (err) {

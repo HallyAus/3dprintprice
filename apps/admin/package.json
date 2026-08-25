@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@printforge/shared": "workspace:*",
-    "next": "^14.1.0",
+    "next": "15.5.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "recharts": "^2.10.0",
@@ -24,7 +24,7 @@
     "@types/react-dom": "^18.2.0",
     "@types/three": "^0.160.0",
     "eslint": "^8.56.0",
-    "eslint-config-next": "^14.1.0",
+    "eslint-config-next": "15.5.21",
     "typescript": "^5.3.0"
   }
 }

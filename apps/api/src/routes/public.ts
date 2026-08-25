@@ -9,7 +9,7 @@ import {
   type PricingConfig,
 } from '@printforge/shared';
 import { query, transaction } from '../db/index.js';
-import { getUploadUrl, getDownloadUrl, calculateFileHash } from '../services/storage.js';
+import { getUploadUrl, getDownloadUrl } from '../services/storage.js';
 import { sliceModel, analyzeGeometry } from '../services/slicer.js';
 import { calculatePrice } from '../services/pricing.js';
 import { sendOwnerNotification, sendCustomerConfirmation } from '../services/email.js';
@@ -36,7 +36,7 @@ export async function publicRoutes(fastify: FastifyInstance) {
 
     if (shopResult.rows.length === 0) {
       // Create shop with default settings if it doesn't exist
-      const newShopResult = await transaction(async (client) => {
+      await transaction(async (client) => {
         const result = await client.query<{ id: string }>(
           'INSERT INTO shops (shop_id, name, owner_email) VALUES ($1, $2, $3) RETURNING id',
           [shopId, shopId.split('.')[0], 'owner@example.com']
@@ -367,7 +367,7 @@ export async function publicRoutes(fastify: FastifyInstance) {
   });
 
   // Health check
-  fastify.get('/health', async (request, reply) => {
+  fastify.get('/health', async (_request, reply) => {
     return reply.send({ status: 'ok', timestamp: new Date().toISOString() });
   });
 }
