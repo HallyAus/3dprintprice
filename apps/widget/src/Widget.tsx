@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { FileUpload } from './components/FileUpload';
 import { StlViewer } from './components/StlViewer';
 import { QuoteForm } from './components/QuoteForm';

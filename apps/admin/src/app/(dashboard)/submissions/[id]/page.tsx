@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import { formatCurrency, formatFileSize, formatDuration, formatDimensions } from '@printforge/shared';
 import { ModelViewer } from '@/components/ModelViewer';
@@ -33,7 +33,8 @@ interface SubmissionDetail {
 
 const STATUS_OPTIONS = ['pending', 'processing', 'quoted', 'accepted', 'rejected', 'completed', 'cancelled'];
 
-export default function SubmissionDetailPage({ params }: { params: { id: string } }) {
+export default function SubmissionDetailPage() {
+  const params = useParams<{ id: string }>();
   const router = useRouter();
   const [submission, setSubmission] = useState<SubmissionDetail | null>(null);
   const [loading, setLoading] = useState(true);

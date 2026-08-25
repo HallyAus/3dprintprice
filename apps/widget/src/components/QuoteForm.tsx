@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useApi } from '../hooks/useApi';
-import type { PublicConfig, QuoteResponse, Material, QualityProfile } from '@printforge/shared';
+import type { PublicConfig, QuoteResponse, QualityProfile } from '@printforge/shared';
 
 interface QuoteFormProps {
   apiUrl: string;

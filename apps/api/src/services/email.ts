@@ -7,7 +7,6 @@ import {
   formatFileSize,
   type QuoteSubmission,
   type PriceBreakdown,
-  type PricingConfig,
 } from '@printforge/shared';
 
 // Initialize SendGrid

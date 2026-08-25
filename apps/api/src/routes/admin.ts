@@ -11,10 +11,9 @@ import {
   DEFAULT_PRICING_CONFIG,
   type PricingConfig,
   type DashboardStats,
-  type QuoteSubmission,
   type SubmissionStatus,
 } from '@printforge/shared';
-import { query, transaction } from '../db/index.js';
+import { query } from '../db/index.js';
 import { getDownloadUrl } from '../services/storage.js';
 import { sendMagicLink } from '../services/email.js';
 import { validatePricingConfig } from '../services/pricing.js';
@@ -330,9 +329,7 @@ export async function adminRoutes(fastify: FastifyInstance) {
   });
 
   // Get single submission
-  fastify.get('/v1/admin/submissions/:id', { preHandler: [verifyAuth] }, async (request: FastifyRequest<{
-    Params: { id: string }
-  }>, reply: FastifyReply) => {
+  fastify.get<{ Params: { id: string } }>('/v1/admin/submissions/:id', { preHandler: [verifyAuth] }, async (request, reply) => {
     const { shopId } = request.user as { shopId: string };
     const { id } = request.params;
 
@@ -409,9 +406,7 @@ export async function adminRoutes(fastify: FastifyInstance) {
   });
 
   // Update submission status
-  fastify.patch('/v1/admin/submissions/:id', { preHandler: [verifyAuth] }, async (request: FastifyRequest<{
-    Params: { id: string }
-  }>, reply: FastifyReply) => {
+  fastify.patch<{ Params: { id: string } }>('/v1/admin/submissions/:id', { preHandler: [verifyAuth] }, async (request, reply) => {
     const { shopId } = request.user as { shopId: string };
     const { id } = request.params;
 
@@ -454,9 +449,7 @@ export async function adminRoutes(fastify: FastifyInstance) {
   });
 
   // Delete submission (GDPR compliance)
-  fastify.delete('/v1/admin/submissions/:id', { preHandler: [verifyAuth] }, async (request: FastifyRequest<{
-    Params: { id: string }
-  }>, reply: FastifyReply) => {
+  fastify.delete<{ Params: { id: string } }>('/v1/admin/submissions/:id', { preHandler: [verifyAuth] }, async (request, reply) => {
     const { shopId } = request.user as { shopId: string };
     const { id } = request.params;
 
@@ -647,9 +640,7 @@ export async function adminRoutes(fastify: FastifyInstance) {
   });
 
   // Update shop settings
-  fastify.patch('/v1/admin/shop', { preHandler: [verifyAuth] }, async (request: FastifyRequest<{
-    Body: { name?: string; ownerEmail?: string }
-  }>, reply: FastifyReply) => {
+  fastify.patch<{ Body: { name?: string; ownerEmail?: string } }>('/v1/admin/shop', { preHandler: [verifyAuth] }, async (request, reply) => {
     const { shopId } = request.user as { shopId: string };
     const { name, ownerEmail } = request.body;
 

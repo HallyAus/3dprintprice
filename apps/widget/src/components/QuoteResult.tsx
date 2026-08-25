@@ -1,5 +1,4 @@
-import React from 'react';
-import { formatCurrency, formatDuration } from '@printforge/shared';
+import { formatCurrency } from '@printforge/shared';
 import type { QuoteResponse } from '@printforge/shared';
 
 interface QuoteResultProps {
